@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android"
+    android:opacity="opaque">
+    <item android:drawable="@color/colorPrimary" />
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/product_logo" />
+    </item>
+    <item android:bottom="5dp">
+        <bitmap
+            android:gravity="center_horizontal|bottom"
+            android:src="@drawable/medgaus_apps" />
+    </item>
+</layer-list>

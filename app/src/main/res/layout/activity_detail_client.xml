@@ -1,0 +1,388 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="5dp"
+    android:background="@color/cardview_light_background"
+    android:padding="10dp">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        tools:context="medgausapps.trademanager.DetailClientActivity">
+
+        <TextView
+            android:id="@+id/required_fields"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginRight="5dp"
+            android:gravity="end"
+            android:text="@string/required_fields" />
+
+        <android.support.design.widget.TextInputLayout
+            android:id="@+id/official_name_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/official_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/official_name"
+                android:inputType="textCapWords" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <android.support.design.widget.TextInputLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <android.support.design.widget.TextInputEditText
+                android:id="@+id/alias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/name"
+                android:inputType="textCapWords" />
+
+        </android.support.design.widget.TextInputLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingLeft="20dp">
+
+            <EditText
+
+                android:id="@+id/manager_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/phone"
+                android:inputType="phone" />
+
+            <EditText
+                android:id="@+id/manager_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/contacting_person"
+                android:inputType="textCapWords" />
+
+            <EditText
+                android:id="@+id/manager2_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/phone"
+                android:inputType="phone"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/manager2_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/contacting_person"
+                android:inputType="textCapWords"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/manager3_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/phone"
+                android:inputType="phone"
+                android:visibility="gone" />
+
+            <EditText
+                android:id="@+id/manager3_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/contacting_person"
+                android:inputType="textCapWords"
+                android:visibility="gone" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end">
+
+                <ImageButton
+                    android:id="@+id/delete_contact"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_alignParentEnd="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="5dp"
+                    android:background="@android:color/transparent"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/minus"
+                    android:text="@string/delete"
+                    android:visibility="gone" />
+
+                <ImageButton
+                    android:id="@+id/add_contact"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_margin="5dp"
+                    android:layout_toLeftOf="@id/delete_contact"
+                    android:layout_toStartOf="@id/delete_contact"
+                    android:background="@android:color/transparent"
+                    android:scaleType="centerInside"
+                    android:src="@drawable/plus"
+                    android:text="@string/add" />
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/working_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/working_time"
+                android:textSize="@dimen/regular_text_size" />
+
+            <EditText
+                android:id="@+id/start_working_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:inputType="time"
+                android:text="08:00"
+                android:textSize="@dimen/regular_text_size" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="-" />
+
+            <EditText
+                android:id="@+id/end_working_time"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:focusable="false"
+                android:inputType="time"
+                android:text="17:00"
+                android:textSize="@dimen/regular_text_size" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp">
+
+            <TextView
+                android:id="@+id/start_notification_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/start_notification_date"
+                android:textSize="@dimen/regular_text_size" />
+
+            <EditText
+                android:id="@+id/start_notification_date_edit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignBaseline="@id/start_notification_date"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_toEndOf="@id/start_notification_date"
+                android:layout_toRightOf="@id/start_notification_date"
+                android:focusable="false"
+                android:gravity="center"
+                android:hint="dd/mm/yyyy"
+                android:inputType="date"
+                android:selectAllOnFocus="true"
+                android:textSize="@dimen/regular_text_size" />
+
+        </RelativeLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/periodicity"
+            android:textSize="@dimen/regular_text_size" />
+
+        <RadioGroup
+            android:id="@+id/periodicity_group"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp">
+
+            <RadioButton
+                android:id="@+id/start_of_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/start_of_month" />
+
+            <RadioButton
+                android:id="@+id/end_of_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/end_of_month" />
+
+            <RadioButton
+                android:id="@+id/weekdays"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/weekdays" />
+
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/days_periodicity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="7">
+
+            <ToggleButton
+                android:id="@+id/monday_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:textOff="@string/monday_short"
+                android:textOn="@string/monday_short"
+                android:textSize="14sp" />
+
+            <ToggleButton
+                android:id="@+id/tuesday_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:textOff="@string/tuesday_short"
+                android:textOn="@string/tuesday_short"
+                android:textSize="14sp" />
+
+            <ToggleButton
+                android:id="@+id/wednesday_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:textOff="@string/wednesday_short"
+                android:textOn="@string/wednesday_short"
+                android:textSize="14sp" />
+
+            <ToggleButton
+                android:id="@+id/thursday_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:textOff="@string/thursday_short"
+                android:textOn="@string/thursday_short"
+                android:textSize="14sp" />
+
+            <ToggleButton
+                android:id="@+id/friday_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:textOff="@string/friday_short"
+                android:textOn="@string/friday_short"
+                android:textSize="14sp" />
+
+            <ToggleButton
+                android:id="@+id/saturday_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:textOff="@string/saturday_short"
+                android:textOn="@string/saturday_short"
+                android:textSize="14sp" />
+
+            <ToggleButton
+                android:id="@+id/sunday_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textAllCaps="false"
+                android:textOff="@string/sunday_short"
+                android:textOn="@string/sunday_short"
+                android:textSize="14sp" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:id="@+id/week_periodicity"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:paddingTop="10dp">
+
+            <TextView
+                android:id="@+id/every_textview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:text="каждую(ые)"
+                android:textSize="14sp" />
+
+            <TextView
+                android:id="@+id/weeks"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:text="неделю(и)"
+                android:textSize="14sp" />
+
+            <RadioGroup
+                android:id="@+id/number_of_weeks"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@id/every_textview"
+                android:layout_toLeftOf="@id/weeks"
+                android:layout_toRightOf="@id/every_textview"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <RadioButton
+                    android:id="@+id/week_one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="1" />
+
+                <RadioButton
+                    android:id="@+id/week_two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2" />
+
+                <RadioButton
+                    android:id="@+id/week_three"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="3" />
+
+                <RadioButton
+                    android:id="@+id/week_four"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="4" />
+
+            </RadioGroup>
+
+        </RelativeLayout>
+
+    </LinearLayout>
+
+</ScrollView>
+

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
+    android:paddingLeft="?android:attr/listPreferredItemPaddingLeft"
+    android:paddingRight="?android:attr/listPreferredItemPaddingRight"
+    android:paddingStart="?android:attr/listPreferredItemPaddingStart" >
+
+    <TextView
+        android:id="@+id/preference_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:minHeight="?android:attr/listPreferredItemHeightSmall"
+        android:text="Example title"
+        android:textAppearance="?android:attr/textAppearanceListItemSmall" />
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/preference_title"
+        android:weightSum="7">
+
+        <Button
+            android:id="@+id/monday_button"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:text="Mon"
+            android:textAllCaps="false"
+            android:textSize="11sp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/tuesday_button"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:text="Tue"
+            android:textAllCaps="false"
+            android:textSize="11sp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/wednesday_button"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:text="Wed"
+            android:textAllCaps="false"
+            android:textSize="11sp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/thursday_button"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:text="Thu"
+            android:textAllCaps="false"
+            android:textSize="11sp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/friday_button"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:text="Fri"
+            android:textAllCaps="false"
+            android:textSize="11sp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/saturday_button"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:text="Sat"
+            android:textAllCaps="false"
+            android:textSize="11sp"
+            android:layout_weight="1"/>
+
+        <Button
+            android:id="@+id/sunday_button"
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:text="Sun"
+            android:textAllCaps="false"
+            android:textSize="11sp"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+</RelativeLayout>
+

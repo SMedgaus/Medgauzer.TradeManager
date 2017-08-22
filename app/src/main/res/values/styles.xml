@@ -1,0 +1,20 @@
+<resources>
+
+    <style name="AppTheme.Launcher">
+        <item name="android:windowBackground">@drawable/launch_screen</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+    </style>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:colorBackground">@color/colorPrimaryLight</item>
+        <item name="android:textColorPrimary">@color/colorTextOnPrimary</item>
+        <item name="android:textColorPrimaryInverse">@color/colorTextOnPrimaryLight</item>
+        <item name="android:textColorSecondary">@color/colorTextOnSecondary</item>
+        <item name="android:textColorSecondaryInverse">@color/colorTextOnSecondaryLight</item>
+        <item name="android:windowBackground">@color/colorPrimaryLight</item>
+    </style>
+
+</resources>

@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="30dp"
+    android:background="@android:color/white">
+
+    <Button
+        android:id="@+id/postpone_tomorrow_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/postpone_tomorrow" />
+
+    <Button
+        android:id="@+id/postpone_day_after_tomorrow_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/postpone_day_after_tomorrow" />
+
+    <Button
+        android:id="@+id/postpone_in_a_week_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/postpone_in_a_week" />
+
+    <Button
+        android:id="@+id/postpone_chosen_date_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/postpone_choose_date" />
+
+</LinearLayout>
+

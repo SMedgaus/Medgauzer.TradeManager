@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    <SwitchPreference
+        android:defaultValue="true"
+        android:key="pref_client_notification"
+        android:title="Уведомление о клиентах"
+        android:disableDependentsState="false"/>
+    <EditTextPreference
+        android:dependency="pref_client_notification"
+        android:key="pref_notification_time"
+        android:title="Время уведомления"
+        android:shouldDisableView="true"/>
+    <medgausapps.trademanager.preferences.WorkdaysPickerPreference
+        android:key="pref_workdays"
+        android:title="Рабочие дни недели"/>
+</PreferenceScreen>
