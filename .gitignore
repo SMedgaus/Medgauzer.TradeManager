@@ -7,3 +7,7 @@
 /build
 /captures
 .externalNativeBuild
+app/build.gradle
+app/app-release.apk
+app/proguard-rules.pro
+.idea/workspace.xml___jb_tmp___

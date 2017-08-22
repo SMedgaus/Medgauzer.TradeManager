@@ -8,7 +8,6 @@ import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
@@ -19,14 +18,12 @@ import android.support.annotation.Nullable;
 public class DatabaseContentProvider extends ContentProvider {
 
     private final static String AUTHORITY = "medgausapps.trademanager.database.DatabaseContentProvider";
-    private final static int CLIENTS_TABLE_NUM = 1;
-    private final static int CLIENT_CONTACTS_TABLE_NUM = 2;
-
     public final static Uri CLIENTS_URI = Uri.parse("content://" + AUTHORITY + "/"
             + DatabaseContract.Clients.TABLE_NAME);
     public final static Uri CLIENT_CONTACTS_URI = Uri.parse("content://" + AUTHORITY + "/"
             + DatabaseContract.ClientContacts.TABLE_NAME);
-
+    private final static int CLIENTS_TABLE_NUM = 1;
+    private final static int CLIENT_CONTACTS_TABLE_NUM = 2;
     private static final UriMatcher sUriMatcher = new UriMatcher(UriMatcher.NO_MATCH);
 
     static {
@@ -101,6 +98,7 @@ public class DatabaseContentProvider extends ContentProvider {
         }
         return null;
     }
+
 
     @Override
     public int bulkInsert(@NonNull Uri uri, @NonNull ContentValues[] values) {
