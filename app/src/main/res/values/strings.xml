@@ -56,4 +56,5 @@
     <string name="import_complete">Импорт завершён</string>
     <string name="permission_possibility">Вы всегда можете включить данное разрешение в настройках приложения</string>
     <string name="permission_prohibition">У вас нет соответсвующего разрешения</string>
+    <string name="hide">Скрыть</string>
 </resources>

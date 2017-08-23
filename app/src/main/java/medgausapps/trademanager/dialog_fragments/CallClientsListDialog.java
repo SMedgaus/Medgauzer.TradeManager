@@ -7,11 +7,8 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
 import java.util.ArrayList;
@@ -67,8 +64,8 @@ public class CallClientsListDialog extends DialogFragment {
                                 + contactPhones.get(itemNum)));
                         startActivity(intent);
                     }
-                });
-                builder.setTitle(R.string.choose_contact);
+                })
+                        .setTitle(R.string.choose_contact);
                 return builder.create();
             }
         }

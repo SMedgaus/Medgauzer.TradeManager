@@ -9,4 +9,8 @@
         <item>По плану</item>
         <item>Все</item>
     </string-array>
+    <string-array name="after_call_state">
+        <item>Перезвонить позже</item>
+        <item>Нет ответа</item>
+    </string-array>
 </resources>

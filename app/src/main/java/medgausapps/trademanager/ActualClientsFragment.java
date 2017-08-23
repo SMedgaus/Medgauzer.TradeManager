@@ -7,7 +7,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -70,7 +69,9 @@ public class ActualClientsFragment extends Fragment implements LoaderManager.Loa
     @Override
     public Loader<Cursor> onCreateLoader(int id, Bundle args) {
         return new CursorLoader(getContext(), DatabaseContentProvider.CLIENTS_URI,
-                null, //all fields
+                new String[]{"*", DatabaseContract.Clients.ALIAS + " || ' ' || "
+                        + DatabaseContract.Clients.OFFICIAL_NAME + " AS '"
+                        + DatabaseContract.Clients.JOINED_NAME + "'"},
                 DatabaseContract.Clients.REMINDING_DATE + " = (SELECT date(?))", new String[]{"now"},
                 DatabaseContract.Clients.START_WORKING_TIME + " ASC");
     }
@@ -86,7 +87,7 @@ public class ActualClientsFragment extends Fragment implements LoaderManager.Loa
     }
 
     @Override
-    public void onCallButtonClicked(long clientId) {
+    public void onCallButtonClicked(final long clientId) {
         Cursor clientContactsCursor = getContext().getContentResolver()
                 .query(DatabaseContentProvider.CLIENT_CONTACTS_URI,
                         new String[]{DatabaseContract.ClientContacts._ID,
@@ -124,7 +125,44 @@ public class ActualClientsFragment extends Fragment implements LoaderManager.Loa
                 newFragment.show(getFragmentManager(), "callClientsList");
             }
             clientContactsCursor.close();
+
+            new AlertDialog.Builder(getContext())
+                    .setItems(R.array.after_call_state, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int which) {
+                            switch (which) {
+                                case 0: //call later
+                                    changeClientAfterCallState(clientId,
+                                            DatabaseContract.Clients.CallState.CALL_LATER);
+                                    break;
+                                case 1: //no response
+                                    changeClientAfterCallState(clientId,
+                                            DatabaseContract.Clients.CallState.NO_RESPONSE);
+                                    break;
+                            }
+                        }
+                    }).setCancelable(true)
+                    .setPositiveButton(R.string.hide, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int which) {
+                            dialogInterface.cancel();
+                        }
+                    })
+                    .setOnCancelListener(new DialogInterface.OnCancelListener() {
+                        @Override
+                        public void onCancel(DialogInterface dialogInterface) {
+                            changeClientAfterCallState(clientId, DatabaseContract.Clients.CallState.OK);
+                        }
+                    })
+                    .create().show();
         }
+    }
+
+    private void changeClientAfterCallState(long clientId, int newClientState) {
+        ContentValues cv = new ContentValues();
+        cv.put(DatabaseContract.Clients.AFTER_CALL_STATE, newClientState);
+        getContext().getContentResolver().update(DatabaseContentProvider.CLIENTS_URI, cv,
+                DatabaseContract.Clients._ID + " = ?", new String[]{String.valueOf(clientId)});
     }
 
     @Override
@@ -134,6 +172,8 @@ public class ActualClientsFragment extends Fragment implements LoaderManager.Loa
         args.putLong(PostponeClientDialog.CLIENT_ID, clientId);
         newFragment.setArguments(args);
         newFragment.show(getFragmentManager(), "postponeClient");
+
+        changeClientAfterCallState(clientId, DatabaseContract.Clients.CallState.UNDEFINED);
     }
 
     @Override
@@ -147,7 +187,8 @@ public class ActualClientsFragment extends Fragment implements LoaderManager.Loa
         ContentResolver contentResolver = getContext().getContentResolver();
         contentResolver.update(DatabaseContentProvider.CLIENTS_URI, client,
                 DatabaseContract.Clients._ID + " = ?", new String[]{Long.toString(clientId)});
-        contentResolver.notifyChange(DatabaseContentProvider.CLIENTS_URI, null);
+
+        changeClientAfterCallState(clientId, DatabaseContract.Clients.CallState.UNDEFINED);
     }
 
     private class OnClientItemLongClickListener implements AdapterView.OnItemLongClickListener {

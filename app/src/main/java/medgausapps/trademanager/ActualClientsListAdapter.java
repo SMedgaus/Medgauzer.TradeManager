@@ -1,7 +1,6 @@
 package medgausapps.trademanager;
 
 
-import android.animation.ObjectAnimator;
 import android.content.Context;
 import android.database.Cursor;
 import android.view.LayoutInflater;
@@ -20,12 +19,6 @@ import medgausapps.trademanager.database.DatabaseContract;
 public class ActualClientsListAdapter extends android.support.v4.widget.CursorAdapter {
 
     private ClientCallback mCallback;
-
-    public interface ClientCallback {
-        void onCallButtonClicked(long clientId);
-        void onConfirmButtonClicked(long clientId, String remindingDate, String period, View rootView);
-        void onPostponeButtonClicked(long clientId);
-    }
 
     public ActualClientsListAdapter(Context context, Cursor c, int flags, ClientCallback callback) {
         super(context, c, flags);
@@ -50,11 +43,7 @@ public class ActualClientsListAdapter extends android.support.v4.widget.CursorAd
             viewHolder._id = cursor.getInt(cursor.getColumnIndex(DatabaseContract.Clients._ID));
 
             String clientName = cursor.getString(
-                    cursor.getColumnIndex(DatabaseContract.Clients.ALIAS));
-            if (clientName.isEmpty()) {
-                clientName = cursor.getString(
-                        cursor.getColumnIndex(DatabaseContract.Clients.OFFICIAL_NAME));
-            }
+                    cursor.getColumnIndex(DatabaseContract.Clients.JOINED_NAME));
             viewHolder.mClientName.setText(clientName);
 
             String workingTime = cursor.getString(
@@ -69,9 +58,35 @@ public class ActualClientsListAdapter extends android.support.v4.widget.CursorAd
                     cursor.getColumnIndex(DatabaseContract.Clients.PERIODICITY));
 
             view.setId(viewHolder._id);
+            int afterCallState = cursor.getInt(cursor.getColumnIndex(DatabaseContract.Clients.AFTER_CALL_STATE));
+            final int START_VIEW_ROTATION = 0, OK_VIEW_ROTATION = 135;
+            if (afterCallState == DatabaseContract.Clients.CallState.OK) {
+                viewHolder.mCallButton.setRotation(OK_VIEW_ROTATION);
+            } else {
+                viewHolder.mCallButton.setRotation(START_VIEW_ROTATION);
+            }
+            switch (afterCallState) {
+                case DatabaseContract.Clients.CallState.UNDEFINED:
+                case DatabaseContract.Clients.CallState.OK:
+                    viewHolder.mCallButton.setBackgroundResource(R.drawable.call_button_shape_green);
+                    break;
+                case DatabaseContract.Clients.CallState.CALL_LATER:
+                    viewHolder.mCallButton.setBackgroundResource(R.drawable.call_button_shape_yellow);
+                    break;
+                case DatabaseContract.Clients.CallState.NO_RESPONSE:
+                    viewHolder.mCallButton.setBackgroundResource(R.drawable.call_button_shape_red);
+                    break;
+            }
         }
     }
 
+    public interface ClientCallback {
+        void onCallButtonClicked(long clientId);
+
+        void onConfirmButtonClicked(long clientId, String remindingDate, String period, View rootView);
+
+        void onPostponeButtonClicked(long clientId);
+    }
 
     private class ClientViewHolder {
         int _id;
@@ -89,11 +104,6 @@ public class ActualClientsListAdapter extends android.support.v4.widget.CursorAd
             mCallButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if (view.getRotation() == 0) {
-                        ObjectAnimator animator = ObjectAnimator
-                                .ofFloat(view, "rotation", view.getRotation() + 135);
-                        animator.start();
-                    }
                     mCallback.onCallButtonClicked(_id);
                 }
             });
