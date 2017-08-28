@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string-array name="clients_standard_actions">
-        <item>Редактировать</item>
-        <item>Удалить</item>
+        <item>Edit</item>
+        <item>Delete</item>
     </string-array>
     <string-array name="main_activity_tab_names">
-        <item>Сегодня</item>
-        <item>По плану</item>
-        <item>Все</item>
+        <item>Today</item>
+        <item>Plan</item>
+        <item>All</item>
     </string-array>
     <string-array name="after_call_state">
-        <item>Перезвонить позже</item>
-        <item>Нет ответа</item>
+        <item>Call later</item>
+        <item>No response</item>
     </string-array>
 </resources>

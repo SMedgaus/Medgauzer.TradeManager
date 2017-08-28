@@ -1,0 +1,61 @@
+<resources>
+    <string name="app_name">Medgauzer</string>
+    <string name="postpone_button">Перенести</string>
+    <string name="confirm_button">Подтвердить</string>
+    <string name="call_button">Позвонить</string>
+
+
+    <string name="clients">Клиенты</string>
+    <string name="client_import">Импорт клиентов</string>
+    <string name="setting">Настройки</string>
+    <string name="no_clients">Нет клиентов</string>
+
+
+    <string name="workdays">Рабочие дни</string>
+    <string name="settings">Настройки</string>
+
+    <!--Details Activity-->
+    <string name="creating_new_client">Создание клиента</string>
+    <string name="editing_new_client">Редактирование</string>
+    <string name="official_name">Юридическое название*</string>
+    <string name="name">Название</string>
+    <string name="start_notification_date">Начальная дата оповещения*:</string>
+    <string name="monday_short">Пн</string>
+    <string name="tuesday_short">Вт</string>
+    <string name="wednesday_short">Ср</string>
+    <string name="thursday_short">Чт</string>
+    <string name="friday_short">Пт</string>
+    <string name="saturday_short">Сб</string>
+    <string name="sunday_short">Вс</string>
+    <string name="periodicity">Периодичность оповещения*:</string>
+    <string name="start_of_month">начало месяца</string>
+    <string name="end_of_month">конец месяца</string>
+    <string name="weekdays">дни недели</string>
+    <string name="phone">Телефон*</string>
+    <string name="contacting_person">Контактное лицо</string>
+    <string name="delete">Удалить</string>
+    <string name="add">Добавить</string>
+    <string name="working_time">Время работы:</string>
+    <string name="required_fields">* - обязательные поля</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="required_field_warning">Поле не может быть пустым!</string>
+    <string name="weekdays_periodicity_warning">Выберите хотя бы один день для оповещения!</string>
+
+    <string name="choose_contact">Выберите контакт:</string>
+    <string name="cancel">Отмена</string>
+    <string name="postpone_tomorrow">Завтра</string>
+    <string name="postpone_day_after_tomorrow">Послезавтра</string>
+    <string name="postpone_in_a_week">Через неделю</string>
+    <string name="postpone_choose_date">Выбрать дату</string>
+    <string name="are_you_sure_to_delete_client">Вы действительно хотите удалить клиента?</string>
+    <string name="keep_client">Оставить</string>
+    <string name="its_clear">Понятно</string>
+    <string name="read_storage_explanation">Разрешение нужно для чтения импортируемого файла.</string>
+    <string name="import_in_progress">Импорт в процессе</string>
+    <string name="import_complete">Импорт завершён</string>
+    <string name="permission_possibility">Вы всегда можете включить данное разрешение в настройках приложения</string>
+    <string name="permission_prohibition">У вас нет соответсвующего разрешения</string>
+    <string name="hide">Скрыть</string>
+    <string name="every">каждую(ые)</string>
+    <string name="weeks">неделю(и)</string>
+</resources>
