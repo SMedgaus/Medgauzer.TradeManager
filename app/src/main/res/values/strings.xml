@@ -52,4 +52,8 @@
     <string name="working_time">Working time:</string>
     <string name="every">every</string>
     <string name="weeks">week(s)</string>
+    <string name="about">About</string>
+    <string name="ok">Ok</string>
+    <string name="version">Version</string>
+    <string name="author">Author</string>
 </resources>

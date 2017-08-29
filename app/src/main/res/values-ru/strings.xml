@@ -58,4 +58,8 @@
     <string name="hide">Скрыть</string>
     <string name="every">каждую(ые)</string>
     <string name="weeks">неделю(и)</string>
+    <string name="about">О программе</string>
+    <string name="author">Автор</string>
+    <string name="ok">Ок</string>
+    <string name="version">Версия</string>
 </resources>

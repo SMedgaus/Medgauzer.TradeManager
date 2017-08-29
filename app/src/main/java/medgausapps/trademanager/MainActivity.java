@@ -1,13 +1,12 @@
 package medgausapps.trademanager;
 
 import android.Manifest;
-import android.app.NotificationManager;
 import android.content.ContentResolver;
 import android.content.ContentValues;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.ContentObserver;
 import android.database.Cursor;
@@ -19,8 +18,6 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v13.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.NotificationCompat;
-import android.support.v4.app.NotificationManagerCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBar;
@@ -38,13 +35,11 @@ import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.UnsupportedEncodingException;
 import java.util.Calendar;
 import java.util.regex.Pattern;
 
 import medgausapps.trademanager.database.DatabaseContentProvider;
 import medgausapps.trademanager.database.DatabaseContract;
-import medgausapps.trademanager.preferences.PreferencesActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -182,6 +177,27 @@ public class MainActivity extends AppCompatActivity {
 //            case R.id.setting_action:
 //                startActivity(new Intent(this, PreferencesActivity.class));
 //                return true;
+            case R.id.about_action:
+                try {
+                    StringBuilder showingMessage = new StringBuilder();
+
+                    showingMessage.append(getString(R.string.version)).append(": ");
+                    PackageInfo packageInfo = getPackageManager().getPackageInfo(getPackageName(), 0);
+                    String versionName = packageInfo.versionName;
+                    showingMessage.append(versionName).append("\n");
+
+                    showingMessage.append(getString(R.string.author)).append(": Sergey Medgaus").append("\n");
+                    showingMessage.append("E-mail: sergey.medgaus@gmail.com").append("\n");
+                    showingMessage.append("MedgausApps © 2017");
+
+                    new AlertDialog.Builder(this)
+                            .setTitle(R.string.about)
+                            .setMessage(showingMessage.toString())
+                            .setPositiveButton(R.string.ok, null)
+                            .create().show();
+                } catch (PackageManager.NameNotFoundException e) {
+                    e.printStackTrace();
+                }
         }
         return super.onOptionsItemSelected(item);
     }
