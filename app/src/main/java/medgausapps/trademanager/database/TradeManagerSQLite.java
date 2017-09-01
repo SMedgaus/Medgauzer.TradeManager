@@ -40,6 +40,10 @@ public class TradeManagerSQLite extends SQLiteOpenHelper {
         if (oldVersion < 2) {
             db.execSQL(DatabaseContract.Clients.ADD_COLUMN_AFTER_CALL_STATE);
         }
+        if (oldVersion < 3) {
+            db.execSQL(DatabaseContract.Clients.ADD_COLUMN_EMAIL);
+            db.execSQL(DatabaseContract.Clients.ADD_COLUMN_ADDRESS);
+        }
 //        for (int i = 1; i <= 4; i++) {
 //            insertEvent(db, "Баку " + i + " Донецк розница", "+38(099)478-51-21");
 //            insertEvent(db, "Бар " + i + " Босс Донецк розница", "+38(099)98-42-75");

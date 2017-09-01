@@ -191,7 +191,6 @@ public class MainActivity extends AppCompatActivity {
                     showingMessage.append("MedgausApps © 2017");
 
                     new AlertDialog.Builder(this)
-                            .setTitle(R.string.about)
                             .setMessage(showingMessage.toString())
                             .setPositiveButton(R.string.ok, null)
                             .create().show();
