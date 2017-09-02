@@ -24,7 +24,9 @@
     <string name="monday_short">Mo</string>
     <string name="name">Name</string>
     <string name="no_clients">No clients</string>
-    <string name="official_name">Official name</string>
+    <string name="official_name">Official name*</string>
+    <string name="email" translatable="false">E-mail</string>
+    <string name="address">Address</string>
     <string name="periodicity">Notification periodicity*:</string>
     <string name="permission_possibility">You can always switch this permission on in the app settings</string>
     <string name="permission_prohibition">You don\'t have according permission</string>

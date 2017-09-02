@@ -5,6 +5,7 @@ import android.content.ContentValues;
 import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.net.Uri;
+import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.annotation.IdRes;
 import android.support.annotation.NonNull;
@@ -13,7 +14,6 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.NavUtils;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.Html;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -54,7 +54,8 @@ public class DetailClientActivity extends AppCompatActivity
     private int mFunctioningMode = CREATING_MODE;
     private long mClientId;
 
-    private EditText startNotificationDate, startWorkingTime, endWorkingTime, officialName, alias;
+    private EditText startNotificationDate, startWorkingTime, endWorkingTime, officialName, alias,
+            email, address;
     private TextInputLayout officialNameLayout;
     private EditText[] managerNames = new EditText[3], managerPhones = new EditText[3];
     private RadioButton weekDays, oneWeek;
@@ -88,6 +89,8 @@ public class DetailClientActivity extends AppCompatActivity
         officialName = (EditText) findViewById(R.id.official_name);
         officialNameLayout = (TextInputLayout) findViewById(R.id.official_name_layout);
         alias = (EditText) findViewById(R.id.alias);
+        email = (EditText) findViewById(R.id.email);
+        address = (EditText) findViewById(R.id.address);
         startNotificationDate = (EditText) findViewById(R.id.start_notification_date_edit);
         startWorkingTime = (EditText) findViewById(R.id.start_working_time);
         endWorkingTime = (EditText) findViewById(R.id.end_working_time);
@@ -264,6 +267,10 @@ public class DetailClientActivity extends AppCompatActivity
                     client.getString(client.getColumnIndex(DatabaseContract.Clients.OFFICIAL_NAME)));
             alias.setText(
                     client.getString(client.getColumnIndex(DatabaseContract.Clients.ALIAS)));
+            address.setText(
+                    client.getString(client.getColumnIndex(DatabaseContract.Clients.ADDRESS)));
+            email.setText(
+                    client.getString(client.getColumnIndex(DatabaseContract.Clients.EMAIL)));
             startWorkingTime.setText(
                     client.getString(client.getColumnIndex(DatabaseContract.Clients.START_WORKING_TIME)));
             endWorkingTime.setText(
@@ -342,8 +349,6 @@ public class DetailClientActivity extends AppCompatActivity
             officialNameLayout.setErrorEnabled(false);
         }
 
-        String aliasStr = alias.getText().toString().trim();
-
         LinkedList<String> managerNamesList = new LinkedList<>();
         LinkedList<String> managerPhonesList = new LinkedList<>();
         for (int i = 0; i < managerNames.length; i++) {
@@ -381,7 +386,15 @@ public class DetailClientActivity extends AppCompatActivity
             ContentValues client = new ContentValues();
 
             client.put(DatabaseContract.Clients.OFFICIAL_NAME, officialNameStr);
+
+            String aliasStr = alias.getText().toString().trim();
             client.put(DatabaseContract.Clients.ALIAS, aliasStr);
+
+            String emailStr = email.getText().toString().trim();
+            client.put(DatabaseContract.Clients.EMAIL, emailStr);
+
+            String addressStr = address.getText().toString().trim();
+            client.put(DatabaseContract.Clients.ADDRESS, addressStr);
 
             client.put(DatabaseContract.Clients.START_WORKING_TIME,
                     startWorkingTime.getText().toString());
