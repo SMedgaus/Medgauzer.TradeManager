@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">Medgauzer</string>
+    <string name="app_name" translatable="false">Medgauzer</string>
     <string name="add">Add</string>
     <string name="are_you_sure_to_delete_client">Are you sure you want to delete the client?</string>
     <string name="call_button">Call</string>
@@ -24,7 +24,9 @@
     <string name="monday_short">Mo</string>
     <string name="name">Name</string>
     <string name="no_clients">No clients</string>
-    <string name="official_name">Official name</string>
+    <string name="official_name">Official name*</string>
+    <string name="email" translatable="false">E-mail</string>
+    <string name="address">Address</string>
     <string name="periodicity">Notification periodicity*:</string>
     <string name="permission_possibility">You can always switch this permission on in the app settings</string>
     <string name="permission_prohibition">You don\'t have according permission</string>

@@ -62,4 +62,5 @@
     <string name="author">Автор</string>
     <string name="ok">Ок</string>
     <string name="version">Версия</string>
+    <string name="address">Адрес</string>
 </resources>
