@@ -49,18 +49,18 @@
     <string name="postpone_choose_date">Выбрать дату</string>
     <string name="are_you_sure_to_delete_client">Вы действительно хотите удалить клиента?</string>
     <string name="keep_client">Оставить</string>
-    <string name="its_clear">Понятно</string>
     <string name="read_storage_explanation">Разрешение нужно для чтения импортируемого файла.</string>
     <string name="import_in_progress">Импорт в процессе</string>
     <string name="import_complete">Импорт завершён</string>
-    <string name="permission_possibility">Вы всегда можете включить данное разрешение в настройках приложения</string>
-    <string name="permission_prohibition">У вас нет соответсвующего разрешения</string>
+    <string name="permission_prohibition">Вы не выдали соответствующего разрешения</string>
     <string name="hide">Скрыть</string>
     <string name="every">каждую(ые)</string>
     <string name="weeks">неделю(и)</string>
     <string name="about">О программе</string>
     <string name="author">Автор</string>
-    <string name="ok">Ок</string>
     <string name="version">Версия</string>
     <string name="address">Адрес</string>
+    <string name="app_settings">НАСТРОЙКИ</string>
+    <string name="open_permissions_and_grant_storage">Откройте Разрешения и дайте разрешение для Памяти</string>
+    <string name="storage_permission_isnt_granted">Разрешение для доступа к Памяти не выдано</string>
 </resources>

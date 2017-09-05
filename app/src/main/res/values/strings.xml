@@ -19,7 +19,6 @@
     <string name="hide">Hide</string>
     <string name="import_complete">Import complete</string>
     <string name="import_in_progress">Import in progress</string>
-    <string name="its_clear">Clear</string>
     <string name="keep_client">Keep</string>
     <string name="monday_short">Mo</string>
     <string name="name">Name</string>
@@ -28,8 +27,7 @@
     <string name="email" translatable="false">E-mail</string>
     <string name="address">Address</string>
     <string name="periodicity">Notification periodicity*:</string>
-    <string name="permission_possibility">You can always switch this permission on in the app settings</string>
-    <string name="permission_prohibition">You don\'t have according permission</string>
+    <string name="permission_prohibition">You haven\'t granted according permission</string>
     <string name="phone">Phone*</string>
     <string name="postpone_button">Postpone</string>
     <string name="postpone_choose_date">Choose date</string>
@@ -55,7 +53,10 @@
     <string name="every">every</string>
     <string name="weeks">week(s)</string>
     <string name="about">About</string>
-    <string name="ok">Ok</string>
+    <string name="ok" translatable="false">Ok</string>
     <string name="version">Version</string>
     <string name="author">Author</string>
+    <string name="storage_permission_isnt_granted">Storage permission isn\'t granted</string>
+    <string name="app_settings">APP SETTINGS</string>
+    <string name="open_permissions_and_grant_storage">Open Permissions and grant the Storage permission</string>
 </resources>

@@ -10,12 +10,15 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.database.ContentObserver;
 import android.database.Cursor;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v13.app.ActivityCompat;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
@@ -45,7 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String SELECTED_TAB = "selectedTab";
     private static final int PICK_FILE_REQUEST = 0;
-    private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS = 1;
+    private static final int MY_PERMISSIONS_REQUEST_READ_FILES = 1;
+    private static final int MY_PERMISSIONS_REQUEST_READ_FILES_RATIONALE = 2;
     private android.support.v7.app.ActionBar mActionBar;
     private ViewPager mViewPager;
     private FloatingActionButton fab;
@@ -169,7 +173,9 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.import_clients_action:
-                if (hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE, MY_PERMISSIONS_REQUEST_READ_CONTACTS,
+                if (hasPermission(Manifest.permission.READ_EXTERNAL_STORAGE,
+                        MY_PERMISSIONS_REQUEST_READ_FILES,
+                        MY_PERMISSIONS_REQUEST_READ_FILES_RATIONALE,
                         getString(R.string.read_storage_explanation))) {
                     materialFilePicker.start();
                 }
@@ -202,11 +208,11 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent intentData) {
         switch (requestCode) {
             case PICK_FILE_REQUEST:
                 if (resultCode == RESULT_OK) {
-                    String filePath = data.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
+                    String filePath = intentData.getStringExtra(FilePickerActivity.RESULT_FILE_PATH);
                     new ImportClientsTask().execute(filePath);
                 }
         }
@@ -245,30 +251,24 @@ public class MainActivity extends AppCompatActivity {
         return tabNames;
     }
 
-    private boolean hasPermission(@NonNull final String permission, @NonNull final int requestCode,
-                                  @Nullable String explanation) {
-        if (ContextCompat.checkSelfPermission(this, permission) != PackageManager.PERMISSION_GRANTED) {
-
-            if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission)) {
-                if (explanation != null) {
-                    new AlertDialog.Builder(this)
-                            .setPositiveButton(R.string.its_clear, new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialogInterface, int i) {
-                                    ActivityCompat.requestPermissions(MainActivity.this,
-                                            new String[]{permission}, requestCode);
-                                }
-                            })
-                            .setMessage(explanation).create().show();
-                }
-            } else {
-                new AlertDialog.Builder(this)
-                        .setMessage(R.string.permission_prohibition)
-                        .setPositiveButton(R.string.its_clear, null)
-                        .create().show();
-            }
-        } else {
+    private boolean hasPermission(@NonNull final String permission, final int requestCode,
+                                  final int requestCodeRationale, @Nullable String explanation) {
+        if (ContextCompat.checkSelfPermission(this, permission) == PackageManager.PERMISSION_GRANTED) {
             return true;
+        } else if (ActivityCompat.shouldShowRequestPermissionRationale(this, permission) &&
+                explanation != null) {
+            new AlertDialog.Builder(this)
+                    .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialogInterface, int i) {
+                            ActivityCompat.requestPermissions(MainActivity.this,
+                                    new String[]{permission}, requestCodeRationale);
+                        }
+                    })
+                    .setMessage(explanation).create().show();
+        } else {
+            ActivityCompat.requestPermissions(MainActivity.this,
+                    new String[]{permission}, requestCode);
         }
         return false;
     }
@@ -277,17 +277,40 @@ public class MainActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions,
                                            @NonNull int[] grantResults) {
         switch (requestCode) {
-            case MY_PERMISSIONS_REQUEST_READ_CONTACTS:
+            case MY_PERMISSIONS_REQUEST_READ_FILES:
+                if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                    materialFilePicker.start();
+                }
+                break;
+            case MY_PERMISSIONS_REQUEST_READ_FILES_RATIONALE:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     materialFilePicker.start();
                 } else {
-                    new AlertDialog.Builder(this)
-                            .setMessage(R.string.permission_possibility)
-                            .setPositiveButton(R.string.its_clear, null)
-                            .create().show();
+                    showStoragePermissionSnackbar();
                 }
                 break;
         }
+    }
+
+    private void showStoragePermissionSnackbar() {
+        Snackbar.make(findViewById(R.id.coordinator_layout), R.string.storage_permission_isnt_granted,
+                Snackbar.LENGTH_LONG)
+                .setAction(R.string.app_settings, new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        openApplicationSettings();
+                        Toast.makeText(getApplicationContext(),
+                                R.string.open_permissions_and_grant_storage,
+                                Toast.LENGTH_LONG).show();
+                    }
+                })
+                .show();
+    }
+
+    public void openApplicationSettings() {
+        Intent appSettingsIntent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS,
+                Uri.parse("package:" + getPackageName()));
+        startActivity(appSettingsIntent);
     }
 
     private class ImportClientsTask extends AsyncTask<String, Void, Void> {
